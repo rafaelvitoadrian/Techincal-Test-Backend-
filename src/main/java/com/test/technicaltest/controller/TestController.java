@@ -55,7 +55,7 @@ public class TestController {
     }
 
     @PostMapping("/api/non-palindrome")
-    public ResponseEntity<Object> findLongestNonPalindrome(@Valid @RequestBody NonPalindrome s, Errors errors) {
+    public ResponseEntity<Object> longestNonPalindrome(@Valid @RequestBody NonPalindrome s, Errors errors) {
         Map<String, Object> response = new HashMap<>();
         if (errors.hasErrors()){
             for(ObjectError error : errors.getAllErrors()){
@@ -64,11 +64,11 @@ public class TestController {
             return ResponseHandler.response("Error",HttpStatus.BAD_REQUEST,response);
         }
 
-        response.put("Hasil",findLongestNonPalindromeSubstring(s));
+        response.put("Hasil",longestNonPalindromeSubstring(s));
         return ResponseHandler.response("Success",HttpStatus.OK,response);
     }
 
-    private String findLongestNonPalindromeSubstring(NonPalindrome input) {
+    private String longestNonPalindromeSubstring(NonPalindrome input) {
         String s = input.getS();
         int n = s.length();
         String nonPalindrome = "";
